@@ -27,6 +27,8 @@ pub enum Model {
     Gpt_4o,
     #[serde(rename = "gpt-4-vision-preview")]
     Gpt_4Turbo_Vision,
+    #[serde(rename = "gpt-4o-mini")]
+    Gpt_4o_Mini,
     #[serde(rename = "o1-mini")]
     Gpt_o1_Mini,
 }
@@ -41,6 +43,7 @@ impl Model {
             Model::Gpt_4Turbo => 128000,
             Model::Gpt_4Turbo_Vision => 128000,
             Model::Gpt_o1_Mini => 128000,
+            Model::Gpt_4o_Mini => 128000,
         }
     }
 }
@@ -56,6 +59,7 @@ impl Display for Model {
             Model::Gpt_4Turbo => "gpt-4-1106-preview",
             Model::Gpt_4Turbo_Vision => "gpt-4-vision-preview",
             Model::Gpt_o1_Mini => "o1-mini",
+            Model::Gpt_4o_Mini => "gpt-4o-mini",
         };
         write!(f, "{model_name}")
     }
@@ -74,6 +78,7 @@ impl FromStr for Model {
             "gpt-4-1106-preview" => Ok(Model::Gpt_4Turbo),
             "gpt-4-vision-preview" => Ok(Model::Gpt_4Turbo_Vision),
             "o1-mini" => Ok(Model::Gpt_o1_Mini),
+            "gpt-4o-mini" => Ok(Model::Gpt_4o_Mini),
             _ => Err(ModelError::UnsupportedModel(s.into())),
         }
     }
